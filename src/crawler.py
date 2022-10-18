@@ -30,7 +30,7 @@ def download_html(url: str, timeout: int = 10) -> tp.Tuple[bool, str]:
 @dataclasses.dataclass
 class Story:
     datetime: str
-    tags: tp.List[str]
+    tags: str
     text: str
     url: str
     votes: int
