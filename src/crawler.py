@@ -2,8 +2,8 @@
 import argparse
 import dataclasses
 import json
-import pathlib
 import logging
+import pathlib
 import random
 import time
 import typing as tp
