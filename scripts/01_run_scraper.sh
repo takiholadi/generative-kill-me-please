@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-../src/crawler.py --output_dirpath="../data/raw/"
+../src/scraper.py --output_dirpath="../data/raw/"

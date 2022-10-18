@@ -12,7 +12,7 @@ import bs4
 import requests
 
 
-logging.basicConfig(filename='logs_crawler.log', level=logging.INFO)
+logging.basicConfig(filename='logs_scraper.log', level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 
@@ -51,7 +51,7 @@ def html2story(html: str) -> tp.Tuple[bool, Story]:
     return (is_sucess, Story(datetime=datetime, tags=tags, text=text, url=url, votes=votes))
 
 
-class Crawler:
+class Scraper:
 
     def __init__(self, output_dirpath: str):
         self.output_dirpath = pathlib.Path(output_dirpath).resolve()
@@ -88,6 +88,6 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--output_dirpath', type=str)
     args = parser.parse_args()
-    crawler = Crawler(output_dirpath=args.output_dirpath)
-    _ = crawler.process()
+    scraper = Scraper(output_dirpath=args.output_dirpath)
+    _ = scraper.process()
     logger.info('-=-=-=-=-=- END -=-=-=-=-=-')
