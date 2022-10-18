@@ -50,7 +50,7 @@ class Crawler:
 
     def __init__(self, output_dirpath: str):
         self.output_dirpath = pathlib.Path(output_dirpath).resolve()
-        self.urls = [f'https://killpls.me/story/{x}' for x in range(1, 30290 + 1)]
+        self.urls = [f'https://killpls.me/story/{x}' for x in range(1, 30290 + 1)]  # `30290` is the last as of October 2022
 
     def process(self) -> tp.List[str]:
         processed_filepaths = []
