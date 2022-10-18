@@ -12,7 +12,7 @@ import bs4
 import requests
 
 
-logging.basicConfig(filename='logs_scraper.log', level=logging.INFO)
+logging.basicConfig(filename='logs.log', level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 
