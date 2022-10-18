@@ -5,7 +5,7 @@ Generates a continuation of story in the style of `https://killpls.me`
 
 ## How to use
 
-Try out Telegram bot (probably shut down): TODO-PLACEHOLDER
+Try out Telegram bot (probably shutdown): TODO-PLACEHOLDER
 
 Dataset on Hugging Face: TODO-PLACEHOLDER
 
