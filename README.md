@@ -13,7 +13,7 @@ Model on Hugging Face: TODO-PLACEHOLDER
 
 
 ## TODO
-- prepare and run crawler: website url -> all stories dump
+- prepare and run scraper: website url -> all stories dump
 - share dataset: (dataset, huggingface account) -> datset id on huggingface hub
 - filter dataset: (stories dump, wanted params) -> wanted stories dump
 - finetune generative model: (backbone model, dataset, training params) -> model
