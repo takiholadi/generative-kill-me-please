@@ -36,14 +36,19 @@ class Story:
     votes: int
 
 
-def html2story(html: str) -> Story:
-    soup = bs4.BeautifulSoup(html, 'html.parser')
-    datetime = soup.find_all('div', attrs={'class': 'col-sm-6'})[0].text.strip()
-    tags = ', '.join([x.strip() for x in soup.find_all('div', attrs={'class': 'col-sm-6'})[1].text.split(',')])
-    text = soup.find_all('div', attrs={'class': 'col-xs-12'})[0].text.replace('\r', '\n').strip()
-    url = 'https' + soup.find('meta', property='og:url')['content'].removeprefix('http')
-    votes = int(soup.find_all('div', attrs={'class': 'col-xs-12'})[1].text.split('\n')[3])
-    return Story(datetime=datetime, tags=tags, text=text, url=url, votes=votes)
+def html2story(html: str) -> tp.Tuple[bool, Story]:
+    (is_sucess, datetime, tags, text, url, votes) = (False, '', '', '', '', 0)
+    try:
+        soup = bs4.BeautifulSoup(html, 'html.parser')
+        datetime = soup.find_all('div', attrs={'class': 'col-sm-6'})[0].text.strip()
+        tags = ', '.join([x.strip() for x in soup.find_all('div', attrs={'class': 'col-sm-6'})[1].text.split(',')])
+        text = soup.find_all('div', attrs={'class': 'col-xs-12'})[0].text.replace('\r', '\n').strip()
+        url = 'https' + soup.find('meta', property='og:url')['content'].removeprefix('http')
+        votes = int(soup.find_all('div', attrs={'class': 'col-xs-12'})[1].text.split('\n')[3])
+        is_sucess = True
+    except:
+        pass
+    return (is_sucess, Story(datetime=datetime, tags=tags, text=text, url=url, votes=votes))
 
 
 class Crawler:
@@ -53,24 +58,23 @@ class Crawler:
         self.urls = [f'https://killpls.me/story/{x}' for x in range(1, 30290 + 1)]  # `30290` is the last as of October 2022
 
     def process(self) -> tp.List[str]:
+        last_stem = max([0] + [int(x.stem) for x in self.output_dirpath.glob('*.json')])
+        assert last_stem <= len(self.urls)
         processed_filepaths = []
-        for idx, each_url in enumerate(self.urls, start=1):
-            logger.info(f'Processing {idx}/{len(self.urls)} URL: {each_url}')
+        for stem, each_url in enumerate(self.urls[last_stem: ], start=last_stem + 1):
+            assert stem == int(pathlib.Path(each_url).stem)
+            logger.info(f'Processing {stem}/{len(self.urls)} URL: {each_url}')
             output_json_filepath = (self.output_dirpath / pathlib.Path(each_url).stem).with_suffix('.json')
             processed_filepaths.append(str(output_json_filepath))
-            is_already_downloaded = int(output_json_filepath.stem) <= max([int(x.stem) for x in self.output_dirpath.glob('*.json')])
-            if is_already_downloaded:
-                logger.info(f'Already downloaded: {each_url}')
-                continue
             time.sleep(random.uniform(0.1, 0.4))
             (is_sucess, html_page) = download_html(each_url)
             if not is_sucess:
                 logger.warning(f'Problem downloading URL: {each_url}')
                 continue
-            try:
-                story = html2story(html_page)
-            except:
+            (is_sucess, story) = html2story(html_page)
+            if not is_sucess:
                 logger.warning(f'Problem parsing URL: {each_url}')
+                continue
             assert each_url == story.url
             self.output_dirpath.mkdir(parents=True, exist_ok=True)
             with open(output_json_filepath, 'w') as f:
