@@ -14,7 +14,9 @@ Up self-hosted API: TODO-PLACEHOLDER
 
 ## TODO
 - prepare and run crawler: website url -> all stories dump
+- share dataset: (dataset, huggingface account) -> datset id on huggingface hub
 - filter dataset: (stories dump, wanted params) -> wanted stories dump
 - finetune generative model: (backbone model, dataset, training params) -> model
+- share model: (dataset, huggingface account) -> model id on huggingface hub
 - try model usage: (model, user prompt text, generative params) -> text continuation
 - deploy: (server, model, telegram bot) -> running telegram bot
