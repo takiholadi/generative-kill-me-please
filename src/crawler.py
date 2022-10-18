@@ -41,7 +41,7 @@ def html2story(html: str) -> Story:
     datetime = soup.find_all('div', attrs={'class': 'col-sm-6'})[0].text.strip()
     tags = ', '.join([x.strip() for x in soup.find_all('div', attrs={'class': 'col-sm-6'})[1].text.split(',')])
     text = soup.find_all('div', attrs={'class': 'col-xs-12'})[0].text.replace('\r', '\n').strip()
-    url = 'https' + soup.find("meta", property="og:url")['content'].removeprefix('http')
+    url = 'https' + soup.find('meta', property='og:url')['content'].removeprefix('http')
     votes = int(soup.find_all('div', attrs={'class': 'col-xs-12'})[1].text.split('\n')[3])
     return Story(datetime=datetime, tags=tags, text=text, url=url, votes=votes)
 
