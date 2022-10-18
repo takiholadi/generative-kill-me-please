@@ -58,7 +58,7 @@ class Crawler:
             logger.info(f'Processing {idx}/{len(self.urls)} URL: {each_url}')
             output_json_filepath = (self.output_dirpath / pathlib.Path(each_url).stem).with_suffix('.json')
             processed_filepaths.append(output_json_filepath)
-            is_already_downloaded = output_json_filepath.exists()
+            is_already_downloaded = int(output_json_filepath.stem) <= max([int(x.stem) for x in self.output_dirpath.glob('*.json')])
             if is_already_downloaded:
                 logger.info(f'Already downloaded: {each_url}')
                 continue
