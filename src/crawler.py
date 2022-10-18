@@ -54,7 +54,7 @@ class Crawler:
 
     def process(self) -> tp.List[str]:
         processed_filepaths = []
-        for idx, each_url in enumerate(self.urls, 1):
+        for idx, each_url in enumerate(self.urls, start=1):
             logger.info(f'Processing {idx}/{len(self.urls)} URL: {each_url}')
             output_json_filepath = (self.output_dirpath / pathlib.Path(each_url).stem).with_suffix('.json')
             processed_filepaths.append(str(output_json_filepath))
