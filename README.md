@@ -1,6 +1,6 @@
 # Generative Kill-Me-Please
 
-Generates a continuation of story in the style of `https://killpls.me`
+Generates a continuation of story in the style of `https://killpls.me`, for Russian language.
 
 
 ## How to use
