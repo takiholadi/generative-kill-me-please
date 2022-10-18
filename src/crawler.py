@@ -62,7 +62,7 @@ class Crawler:
             if is_already_downloaded:
                 logger.info(f'Already downloaded: {each_url}')
                 continue
-            time.sleep(random.uniform(0.4, 1.4))
+            time.sleep(random.uniform(0.1, 0.4))
             (is_sucess, html_page) = download_html(each_url)
             if not is_sucess:
                 logger.warning(f'Problem downloading URL: {each_url}')
