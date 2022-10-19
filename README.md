@@ -14,7 +14,7 @@ Model on Hugging Face: TODO-PLACEHOLDER
 
 ## TODO
 - [DONE] prepare and run scraper: website url -> all stories dump
-- build dataset: all stories dump -> dataset
+- [DONE] build dataset: all stories dump -> dataset
 - share dataset: (dataset, huggingface account) -> dataset id on huggingface hub
 - filter dataset: (dataset, wanted stories params) -> wanted stories dataset
 - finetune generative model: (backbone model, wanted stories dataset, training params) -> model
