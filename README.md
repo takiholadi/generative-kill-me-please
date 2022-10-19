@@ -7,7 +7,7 @@ Generates a continuation of story in the style of `https://killpls.me`, for Russ
 
 Try out Telegram bot (most likely off): TODO-PLACEHOLDER
 
-Dataset on Hugging Face: TODO-PLACEHOLDER
+Dataset on Hugging Face: https://huggingface.co/datasets/takiholadi/kill-me-please-dataset
 
 Model on Hugging Face: TODO-PLACEHOLDER
 
@@ -15,7 +15,7 @@ Model on Hugging Face: TODO-PLACEHOLDER
 ## TODO
 - [DONE] prepare and run scraper: website url -> all stories dump
 - [DONE] build dataset: all stories dump -> dataset
-- share dataset: (dataset, huggingface account) -> dataset id on huggingface hub
+- [DONE] share dataset: (dataset, huggingface account) -> dataset id on huggingface hub
 - filter dataset: (dataset, wanted stories params) -> wanted stories dataset
 - finetune generative model: (backbone model, wanted stories dataset, training params) -> model
 - share model: (model, huggingface account) -> model id on huggingface hub
